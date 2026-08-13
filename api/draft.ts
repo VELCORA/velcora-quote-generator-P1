@@ -1,4 +1,4 @@
-export const config = { runtime: "nodejs22.x" };
+export const config = { runtime: "nodejs" };
 
 const MODEL = "gemini-2.0-flash";
 
