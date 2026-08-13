@@ -66,7 +66,13 @@ export function QuoteSheet({ quote, profile, number, editable = false, onChange 
   };
 
   return (
-    <article className="print-sheet rounded-xl border border-paper-line bg-paper p-8 text-ink shadow-sheet sm:p-12">
+    <article className="print-sheet overflow-hidden rounded-xl border border-paper-line bg-paper text-ink shadow-sheet">
+      <div
+        className="h-2 w-full"
+        style={{ backgroundColor: "var(--brand-accent)" }}
+        aria-hidden
+      />
+      <div className="p-8 sm:p-12">
       <header className="flex flex-wrap items-start justify-between gap-6 border-b border-paper-line pb-6">
         <div className="flex items-center gap-3">
           {profile.logo && (
@@ -113,7 +119,12 @@ export function QuoteSheet({ quote, profile, number, editable = false, onChange 
         </div>
         <div className="text-right">
           <p className="label-caps">Total</p>
-          <p className="font-display text-3xl">{money(quote.total, c)}</p>
+          <p
+            className="font-display text-3xl"
+            style={{ color: "var(--brand-accent)" }}
+          >
+            {money(quote.total, c)}
+          </p>
         </div>
       </div>
 
@@ -367,6 +378,7 @@ export function QuoteSheet({ quote, profile, number, editable = false, onChange 
           <p className="mt-2 text-xs text-ink-soft">Authorised signature</p>
         </div>
       </footer>
+      </div>
     </article>
   );
 }
@@ -374,7 +386,7 @@ export function QuoteSheet({ quote, profile, number, editable = false, onChange 
 function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
     <section className="mt-10">
-      <h3 className="label-caps">{title}</h3>
+      <h3 className="label-caps text-accent">{title}</h3>
       <div className="mt-4">{children}</div>
     </section>
   );

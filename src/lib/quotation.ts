@@ -17,6 +17,7 @@ export interface Quotation {
   total: number;
   paymentSchedule: { milestone: string; due: string; percentage: number; amount: number }[];
   validityDays: number;
+  terms: string[];
 }
 
 export function emptyQuotation(): Quotation {
@@ -35,6 +36,7 @@ export function emptyQuotation(): Quotation {
     total: 0,
     paymentSchedule: [],
     validityDays: 14,
+    terms: [],
   };
 }
 
@@ -66,6 +68,7 @@ export function computeTotals(q: Partial<Quotation>, profile: CompanyProfile): Q
     total,
     paymentSchedule,
     validityDays: q.validityDays ?? 14,
+    terms: q.terms ?? [],
   };
 }
 
@@ -84,3 +87,7 @@ export async function draftQuote(brief: string, profile: CompanyProfile): Promis
   const data = (await res.json()) as Partial<Quotation>;
   return computeTotals(data, profile);
 }
+
+// Hint shown in the brief step so users know what makes a good terms list.
+export const QUOTATION_TERMS_HINT =
+  "Add 2–5 concise payment & legal terms (e.g. 50% deposit to start, net-14 invoice, revisions beyond scope billed separately).";

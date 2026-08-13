@@ -9,6 +9,7 @@ export type CompanyProfile = {
   currency: string;
   taxLabel?: string;
   taxRate?: number;
+  accent?: string;
 };
 
 export function money(amount: number, currency = "USD"): string {

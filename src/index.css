@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --color-background: #ffffff;
@@ -27,6 +30,40 @@
   --font-display: "Georgia", "Times New Roman", serif;
 }
 
+/* Brand accent is runtime-configurable (Settings color picker + ThemeProvider). */
+:root {
+  --brand-accent: #c08a2e;
+  --color-accent: var(--brand-accent);
+  --color-ring: var(--brand-accent);
+}
+
+/* Dark mode overrides — paper/ink/accent inverted. */
+.dark {
+  --color-background: #14130f;
+  --color-foreground: #f3efe6;
+  --color-primary: #f3efe6;
+  --color-primary-foreground: #14130f;
+  --color-secondary: #211f18;
+  --color-secondary-foreground: #f3efe6;
+  --color-muted: #211f18;
+  --color-muted-foreground: #a39e92;
+  --color-accent: var(--brand-accent);
+  --color-accent-foreground: #14130f;
+  --color-destructive: #f06a5d;
+  --color-destructive-foreground: #14130f;
+  --color-popover: #1c1a15;
+  --color-popover-foreground: #f3efe6;
+  --color-card: #1c1a15;
+  --color-card-foreground: #f3efe6;
+  --color-border: #2e2b22;
+  --color-input: #2e2b22;
+  --color-ring: var(--brand-accent);
+  --color-paper: #1c1a15;
+  --color-paper-line: #2e2b22;
+  --color-ink: #f3efe6;
+  --color-ink-soft: #a39e92;
+}
+
 @layer base {
   body {
     background-color: var(--color-background);
@@ -51,9 +88,22 @@
   box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.25);
 }
 
+/* Print: only the quotation sheet is visible. Hide all app chrome. */
 @media print {
-  body {
-    background: #fff;
+  body * {
+    visibility: hidden;
+  }
+  .print-sheet,
+  .print-sheet * {
+    visibility: visible;
+  }
+  .print-sheet {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    box-shadow: none !important;
+    border: none !important;
   }
   .no-print {
     display: none !important;

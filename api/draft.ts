@@ -43,10 +43,11 @@ export default async function handler(req: Request): Promise<Response> {
   "taxLabel"?: string,
   "taxRate"?: number,
   "paymentSchedule": { "milestone": string, "due": string, "percentage": number }[],
-  "validityDays": number
+  "validityDays": number,
+  "terms": string[]
 }
 
-Rules: amounts are numbers (no currency symbols). paymentSchedule percentages must sum to 100. Be realistic with pricing and timelines. Keep copy concise and professional.`;
+Rules: amounts are numbers (no currency symbols). paymentSchedule percentages must sum to 100. Be realistic with pricing and timelines. Keep copy concise and professional. Emit 2-5 concise payment/legal terms (e.g. "50% deposit required to begin", "Final invoice due net 14", "Revisions beyond scope billed at standard rate").`;
 
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${key}`;
   const payload = {
