@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #ffffff;
+  --color-foreground: #1a1a17;
+  --color-primary: #1f2430;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #f1efe9;
+  --color-secondary-foreground: #1a1a17;
+  --color-muted: #f1efe9;
+  --color-muted-foreground: #6f6b63;
+  --color-accent: #c08a2e;
+  --color-accent-foreground: #ffffff;
+  --color-destructive: #b42318;
+  --color-destructive-foreground: #ffffff;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #1a1a17;
+  --color-card: #ffffff;
+  --color-card-foreground: #1a1a17;
+  --color-border: #e8e3d8;
+  --color-input: #e8e3d8;
+  --color-ring: #c08a2e;
+  --color-paper: #fbfaf7;
+  --color-paper-line: #e8e3d8;
+  --color-ink: #1a1a17;
+  --color-ink-soft: #6f6b63;
+  --font-display: "Georgia", "Times New Roman", serif;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+  }
+}
+
+.label-caps {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-ink-soft);
+}
+
+.print-avoid-break {
+  break-inside: avoid;
+}
+
+.shadow-sheet {
+  box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.25);
+}
+
+@media print {
+  body {
+    background: #fff;
+  }
+  .no-print {
+    display: none !important;
+  }
+}

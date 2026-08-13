@@ -1,27 +1,30 @@
-# Velcora Quote Generator
+# Velcora Quote Generator (P1)
 
 Turn a one-line client brief into a polished, branded, print-ready quotation.
 
 ## What it does
+- **AI drafting** — describe the project in plain language and get a structured quote (scope, deliverables, timeline, pricing, payment schedule, terms).
+- **Inline editing** — click any text or number on the sheet to adjust it; totals and tax recalculate automatically.
+- **Company profile** — save your logo, business name, contact details and tax preset; reused for every quote.
+- **Local history** — past quotes are stored in your browser so you can reopen or edit them.
+- **Share & export** — print to PDF, or share via WhatsApp / email.
 
-- **AI drafting** — describe the project in plain language and get a structured quote with scope, deliverables, timeline, pricing, terms and payment schedule.
-- **Inline editing** — click any text or number on the generated sheet to adjust it; totals and tax recalculate automatically.
-- **Company profile** — save your logo, business name, contact details, quote prefix and tax preset once; reuse it for every quote.
-- **Local history** — past quotes are stored in your browser so you can reopen, edit or delete them.
-- **Share & export** — copy a shareable link, send via WhatsApp or email, or print to PDF.
+## Stack
+- Vite + React 19 + TypeScript + Tailwind CSS v4
+- AI drafting via a Vercel serverless function (`api/draft.ts`) calling Google Gemini
 
-## Development
-
-Requires [Bun](https://bun.sh) (or Node.js + npm).
+## Develop
+Requires Node.js >= 22.
 
 ```sh
-bun i
-bun run dev
+npm install
+npm run dev
 ```
 
-## Built with
+## Deploy (Vercel)
+1. Push this repo to GitHub.
+2. In Vercel: New Project → Import the repo (Vercel auto-detects Vite).
+3. Add an environment variable: `GEMINI_API_KEY` (get a free key at https://aistudio.google.com/apikey).
+4. Deploy.
 
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
+The AI "Generate quote" feature needs `GEMINI_API_KEY` set; everything else works without it.

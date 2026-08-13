@@ -1,4 +1,5 @@
-import type { Quotation } from "@/lib/quotation.server";
+import type { ReactNode } from "react";
+import type { Quotation } from "@/lib/quotation";
 import type { CompanyProfile } from "@/lib/quote-store";
 import { money } from "@/lib/quote-store";
 import { cn } from "@/lib/utils";
@@ -370,7 +371,7 @@ export function QuoteSheet({ quote, profile, number, editable = false, onChange 
   );
 }
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
     <section className="mt-10">
       <h3 className="label-caps">{title}</h3>
