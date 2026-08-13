@@ -3,6 +3,7 @@ import { useApp } from "@/lib/app-context";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { PlusCircle, Menu, Sun, Moon, PanelLeftClose, PanelLeft } from "lucide-react";
+import { BRAND_LOGO, BRAND_NAME } from "@/lib/brand";
 
 export function TopBar({
   collapsed,
@@ -37,7 +38,12 @@ export function TopBar({
         aria-label="Toggle sidebar"
       >
         {collapsed ? <PanelLeft className="h-5 w-5" /> : <PanelLeftClose className="h-5 w-5" />}
-      </button>
+        </button>
+        <img
+          src={BRAND_LOGO}
+          alt={BRAND_NAME}
+          className="hidden h-8 w-8 rounded-lg bg-white p-1 shadow-sm md:block"
+        />
 
       <div className="ml-auto flex items-center gap-2">
         <Button onClick={() => startNew()} size="sm">

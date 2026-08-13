@@ -1,6 +1,7 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { useApp, type View } from "@/lib/app-context";
+import { BRAND_LOGO, BRAND_NAME } from "@/lib/brand";
 import {
   LayoutDashboard,
   PlusCircle,
@@ -31,18 +32,11 @@ export function Sidebar({
 }) {
   const { view, setView, profile } = useApp();
 
-  const initials = (profile.companyName || "V")
-    .split(" ")
-    .map((w) => w[0])
-    .slice(0, 2)
-    .join("")
-    .toUpperCase();
-
   const content = (
     <div className="flex h-full flex-col p-4">
       <div className={cn("flex items-center gap-3", collapsed && "justify-center")}>
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent text-sm font-bold text-accent-foreground">
-          {initials}
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white p-1 shadow-sm">
+          <img src={BRAND_LOGO} alt={BRAND_NAME} className="h-full w-full object-contain" />
         </div>
         {!collapsed && (
           <div className="min-w-0">
