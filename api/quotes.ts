@@ -25,7 +25,7 @@
 //   POST   /api/quotes            -> { backed:true, id }   body: SavedQuote
 //   DELETE /api/quotes?id=<uuid>  -> { ok:true }
 
-export const config = { runtime: "nodejs22.x", region: "iad1", maxDuration: 45 };
+export const config = { runtime: "nodejs22.x", regions: ["iad1"], maxDuration: 45 };
 
 interface SavedQuotePayload {
   id: string;

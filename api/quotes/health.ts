@@ -3,7 +3,7 @@
 // { backed: false } with 503. The client uses this to decide between the server
 // and localStorage store. Never throws.
 
-export const config = { runtime: "nodejs22.x", region: "iad1" };
+export const config = { runtime: "nodejs22.x", regions: ["iad1"] };
 
 export default async function handler(): Promise<Response> {
   const backed = Boolean(process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE);
