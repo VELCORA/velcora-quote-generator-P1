@@ -1,6 +1,6 @@
 export const config = { runtime: "nodejs" };
 
-const MODEL = "gemini-2.0-flash";
+const MODEL = "gemini-3.7-flash";
 
 export default async function handler(req: Request): Promise<Response> {
   if (req.method !== "POST") {
@@ -65,11 +65,24 @@ Rules: amounts are numbers (no currency symbols). paymentSchedule percentages mu
   };
 
   try {
-    const r = await fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 40000);
+    let r: Response;
+    try {
+      r = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+        signal: controller.signal,
+      });
+    } catch (e) {
+      clearTimeout(timer);
+      return Response.json(
+        { error: e instanceof Error && e.name === "AbortError" ? "Gemini request timed out" : "Gemini request failed" },
+        { status: 502 },
+      );
+    }
+    clearTimeout(timer);
     const data = await r.json();
     if (!r.ok) {
       return Response.json(
