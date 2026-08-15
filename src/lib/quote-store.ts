@@ -30,7 +30,8 @@ const HISTORY_KEY = "velcora.quotes";
 const DEFAULT_PROFILE: CompanyProfile = {
   companyName: "Velcora",
   tagline: "AI automation studio",
-  email: "hello@velcora.ai",
+  email: "velcora.ai@gmail.com",
+  phone: "+919138278584",
   currency: "USD",
   taxLabel: "Tax",
   taxRate: 0,
